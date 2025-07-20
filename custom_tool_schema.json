@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "YouTube Video Details API",
+    "version": "1.0.0",
+    "description": "Custom tool to fetch YouTube video snippet and statistics by video ID"
+  },
+  "servers": [
+    {
+      "url": "https://www.googleapis.com/youtube/v3",
+      "description": "YouTube Data API Server"
+    }
+  ],
+  "paths": {
+    "/videos": {
+      "get": {
+        "summary": "Fetch YouTube Video Details",
+        "description": "Returns video snippet and statistics for a given video ID.",
+        "operationId": "getYouTubeVideoData",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "YouTube Video ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "part",
+            "in": "query",
+            "required": true,
+            "description": "Comma-separated list of parts to retrieve (e.g., snippet,statistics)",
+            "schema": {
+              "type": "string",
+              "example": "snippet,statistics"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "description": "YouTube Data API Key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "API key or permission issue"
+          }
+        }
+      }
+    }
+  }
+}
