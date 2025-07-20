@@ -1,8 +1,8 @@
 # scalestack-lyzr-agent
 YouTube Revenue Optimization Agent for Software &amp; IT Companies
 # SCALESTACK – YouTube Revenue Optimization Agent
-
-SCALESTACK is an AI agent built with Lyzr Studio that helps Software & IT companies optimize their YouTube video content by analyzing viewer behavior, comments, and engagement metrics.
+**Agent Link:https://studio.lyzr.ai/agent/687cc40789681fa4f199bd20
+**SCALESTACK is an AI agent built with Lyzr Studio that helps Software & IT companies optimize their YouTube video content by analyzing viewer behavior, comments, and engagement metrics.
 
 ## 🧠 What It Does
 - Fetches YouTube video metadata and statistics.
@@ -22,7 +22,7 @@ SCALESTACK is an AI agent built with Lyzr Studio that helps Software & IT compan
 - Prompt Engineering
 
 ## 📽️ Demo Video
-[Watch Demo Video](./demo/scalestack_demo_video.mp4)
+
 
 ## 📄 Presentation
 View the 3-slide summary deck [here](./docs/presentation.pdf)
