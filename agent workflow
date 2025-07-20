@@ -1,0 +1,64 @@
+## Slide 1: Problem + Solution
+
+### Problem
+
+Software & IT companies struggle to turn YouTube traffic into actual revenue.
+
+**Challenges:**
+
+* High drop-off rates early in videos.
+* Viewer confusion on technical topics.
+* Missed insights from comments and engagement data.
+
+### Solution – SCALESTACK
+
+SCALESTACK is a YouTube Revenue Optimization Agent.
+
+* Analyzes YouTube video metadata, engagement stats, and viewer feedback.
+* Provides **actionable recommendations** to increase:
+
+  * Conversions
+  * Watch time
+  * Lead generation
+
+---
+
+## Slide 2: Architecture & Tools
+
+### Agent Architecture
+
+User Input → YouTube Search → Video ID → YouTube Stats + Comments → LLM → Structured Insights
+
+### Tools & Tech Stack
+
+* **Lyzr AI Studio** – Agent development platform
+* **YouTube Data API v3** – For video metadata and comments
+* **OpenAI GPT-4** – Language model for content analysis
+* **Custom Tool** – Defined using OpenAPI schema
+
+---
+
+## Slide 3: Demo Highlights + Next Steps
+
+### Demo Highlights
+
+* Search for a topic: *"How to build AI APIs"*
+* The agent:
+
+  * Finds relevant videos
+  * Extracts statistics and user comments
+  * Generates:
+
+    * Summary
+    * Insights
+    * Actionable Recommendations
+
+### Next Steps
+
+* Launch as a YouTube optimization plugin for SaaS marketers
+* Extend support to LinkedIn, Shorts, and Twitter
+* Add dashboard for:
+
+  * Trend monitoring
+  * Real-time alerts
+  * Lead capture automation
