@@ -2,8 +2,6 @@ name: Baseline Guardian Scan
 
 on:
   push:
-    branches:
-      - main
   pull_request:
 
 jobs:
@@ -11,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Node.js
@@ -20,19 +18,18 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
       - name: Run Baseline Guardian Scan
+        run: node bin/scan.js --repo Sngithub12/scalestack-lyzr-agent -o report.json -m report.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node bin/scan.js -r ${{ github.repository }} -o report.json -m report.md
 
       - name: Upload scan reports
         uses: actions/upload-artifact@v4
         with:
-          name: baseline-guardian-reports
+          name: baseline-guardian-report
           path: |
             report.json
             report.md
+
