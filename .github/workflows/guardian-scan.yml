@@ -36,5 +36,3 @@ jobs:
           path: |
             report.json
             report.md
-
-
