@@ -2,16 +2,9 @@ name: Baseline Guardian Scan
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
-  workflow_dispatch: {}
-
-permissions:
-  contents: read
-  issues: write
+    branches: [ main ]
 
 jobs:
   scan:
@@ -20,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,47 +20,25 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run Baseline Guardian Scan (PR)
-        if: github.event_name == 'pull_request'
-        run: |
-          node bin/scan.js --repo ${{ github.repository }} --base ${{ github.event.pull_request.base.sha }} --head ${{ github.event.pull_request.head.sha }} -o report.json -m report.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run Baseline Guardian Scan (push)
-        if: github.event_name == 'push'
-        run: |
-          node bin/scan.js --repo ${{ github.repository }} -o report.json -m report.md
+        run: node bin/scan.js --repo ${{ github.repository }} -o report.json -m report.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload scan reports
         uses: actions/upload-artifact@v4
         with:
-          name: guardian-scan-reports
+          name: baseline-guardian-reports
           path: |
             report.json
             report.md
 
       - name: Post summary comment to PR
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v6
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require('fs');
-            function safeRead(path) {
-              try { return fs.readFileSync(path, 'utf8'); }
-              catch(e) { return null; }
-            }
-            const md = safeRead('report.md') || 'No report.md generated.';
-            let body = "### Baseline Guardian Scan — summary\\n\\n";
-            body += md.length > 6500 ? md.slice(0, 6500) + "\n\n*Truncated... see artifacts for full report.*" : md;
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body
-            });
+          header: "🧠 Baseline Guardian Report"
+          path: report.md
+
