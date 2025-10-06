@@ -1,0 +1,11 @@
+{
+  "name": "baseline-guardian",
+  "version": "1.0.0",
+  "description": "Security and code quality scanner for GitHub repos",
+  "main": "bin/scan.js",
+  "type": "commonjs",
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "node-fetch": "^2.6.7"
+  }
+}
